@@ -36,6 +36,9 @@
 #include "stm32f4xx_it.h"
 
 /* USER CODE BEGIN 0 */
+extern I2S_HandleTypeDef hAudioOutI2s[];  
+#define AUDIO_OUT1_IRQHandler                 	DMA1_Stream4_IRQHandler
+#define AUDIO_OUT2_IRQHandler                   DMA1_Stream7_IRQHandler
 
 /* USER CODE END 0 */
 
@@ -67,7 +70,42 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32f4xx.s).                    */
 /******************************************************************************/
 
+/**
+* @brief This function handles EXTI line[15:10] interrupts.
+*/
+void EXTI15_10_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+
+  /* USER CODE END EXTI15_10_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
+  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+
+  /* USER CODE END EXTI15_10_IRQn 1 */
+}
+
 /* USER CODE BEGIN 1 */
+/**
+  * @brief  This function handles DMA Stream interrupt request for First Device.
+  * @param  None
+  * @retval None
+  */
+void AUDIO_OUT1_IRQHandler(void)
+{
+
+  HAL_DMA_IRQHandler(hAudioOutI2s[0].hdmatx);
+}
+
+/**
+  * @brief  This function handles DMA Stream interrupt request for Second Device.
+  * @param  None
+  * @retval None
+  */
+void AUDIO_OUT2_IRQHandler(void)
+{
+
+  HAL_DMA_IRQHandler(hAudioOutI2s[1].hdmatx);
+}
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

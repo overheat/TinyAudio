@@ -144,7 +144,7 @@ extern "C" {
 #define AUDIO_OUT2_I2S_DMAx_IRQ                 DMA1_Stream7_IRQn
 #define AUDIO_OUT2_I2S_DMAx_PERIPH_DATA_SIZE    DMA_PDATAALIGN_HALFWORD
 #define AUDIO_OUT2_I2S_DMAx_MEM_DATA_SIZE       DMA_MDATAALIGN_HALFWORD
-#define  AUDIO_OUT2_IRQHandler                  DMA1_Stream7_IRQHandler
+#define AUDIO_OUT2_IRQHandler                   DMA1_Stream7_IRQHandler
   /* Reset Pin definitions */
 #define AUDIO_OUT2_RST_GPIO_PORT                GPIOA
 #define AUDIO_OUT2_RST_GPIO_CLK_ENABLE()        __GPIOA_CLK_ENABLE()

@@ -1,10 +1,14 @@
 /**
   ******************************************************************************
-  * @file    stm32f4xx_it.h
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @file    cube_hal.h
+  * @author  Central Labs
+  * @version V2.0.0
+  * @date    3-March-2017
+  * @brief   Clock tree configuration header and include file
   ******************************************************************************
+  * @attention
   *
-  * COPYRIGHT(c) 2017 STMicroelectronics
+  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -29,29 +33,22 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */
+  */ 
 
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F4xx_IT_H
-#define __STM32F4xx_IT_H
-
-#ifdef __cplusplus
- extern "C" {
-#endif 
+#ifndef _CUBE_HAL_H_
+#define _CUBE_HAL_H_
 
 /* Includes ------------------------------------------------------------------*/
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
-
-void SysTick_Handler(void);
-void EXTI15_10_IRQHandler(void);
-
-#ifdef __cplusplus
-}
+#ifdef USE_STM32F4XX_NUCLEO
+#define USB_IRQHandler OTG_FS_IRQHandler
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx.h"
+#include "stm32f4xx_it.h"
+#include "stm32f4xx_nucleo.h"   
+#include "audio_application.h"
+#include "x_nucleo_cca01m1_audio_f4.h"
 #endif
 
-#endif /* __STM32F4xx_IT_H */
+void SystemClock_Config(void);
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif //_CUBE_HAL_H_
